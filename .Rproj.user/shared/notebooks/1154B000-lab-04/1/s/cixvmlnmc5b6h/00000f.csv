@@ -1,4 +1,5 @@
-"0","# work with the data from the United States only"
-"0","laquinta_us <- laquinta_country %>% "
-"0"," filter(country == ""United States"")"
+"0","# Which states have the most and fewest Denny’s locations? What about La Quinta?"
 "0",""
+"0","dennys %>%"
+"0","  count(state) %>%"
+"0","  inner_join(states, by = c(""state"" = ""abbreviation""))"

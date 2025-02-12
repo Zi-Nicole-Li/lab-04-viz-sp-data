@@ -196,3 +196,69 @@ laquinta_us <- laquinta_country %>%
 ```
 
 ### Exercise 9
+
+``` r
+# Which states have the most and fewest Denny’s locations? What about La Quinta?
+
+dennys %>%
+  count(state) %>%
+  inner_join(states, by = c("state" = "abbreviation"))
+```
+
+    ## # A tibble: 51 × 4
+    ##    state     n name                     area
+    ##    <chr> <int> <chr>                   <dbl>
+    ##  1 AK        3 Alaska               665384. 
+    ##  2 AL        7 Alabama               52420. 
+    ##  3 AR        9 Arkansas              53179. 
+    ##  4 AZ       83 Arizona              113990. 
+    ##  5 CA      403 California           163695. 
+    ##  6 CO       29 Colorado             104094. 
+    ##  7 CT       12 Connecticut            5543. 
+    ##  8 DC        2 District of Columbia     68.3
+    ##  9 DE        1 Delaware               2489. 
+    ## 10 FL      140 Florida               65758. 
+    ## # ℹ 41 more rows
+
+### Exercise 10
+
+\`\`\`{r-Ex.10} \# Which states have the most Denny’s locations per
+thousand square miles? What about La Quinta?
+
+dennys \<- dennys %\>% mutate(establishment = “Denny’s”) laquinta \<-
+laquinta %\>% mutate(establishment = “La Quinta”)
+
+dennys_laquinta \<- bind_rows(dennys, laquinta)
+
+ggplot(dennys_laquinta, mapping = aes( x = longitude, y = latitude,
+color = establishment )) + geom_point()
+
+    ### Exercise 11
+    ```{r-Ex.11}
+    # Filter the data for observations in North Carolina only, and recreate the plot. 
+
+    dennys_laquinta %>% 
+       filter(state == "NC") %>%
+       ggplot(mapping = aes(
+       x = longitude,
+       y = latitude,
+       color = establishment
+     )) +
+       geom_point(size = 2, alpha = 0.6) + 
+       labs(title = "Location of Dennys vs. Laquinta in NC")
+
+    # the joke may not hold true here, I think? based on this plot, I can only see 4 locations that the two are super close to each other.
+
+### Exercise 12
+
+\`\`\`{r-EX.12} \# Now filter the data for observations in Texas only,
+and recreate the plot.
+
+dennys_laquinta %\>% filter(state == “TX”) %\>% ggplot(mapping = aes( x
+= longitude, y = latitude, color = establishment )) + geom_point(size =
+2.5, alpha = 0.25) + labs(title = “Location of Dennys vs. Laquinta in
+TX”)
+
+# the joke hold true in TX, they do cluster more tightly here.
+
+\`\`\`

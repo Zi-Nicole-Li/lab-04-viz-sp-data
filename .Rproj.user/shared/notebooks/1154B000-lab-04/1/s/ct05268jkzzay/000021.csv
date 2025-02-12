@@ -1,0 +1,5 @@
+"0",""
+"0","# work with the data from the United States only"
+"0","laquinta_us <- laquinta_country %>% "
+"0"," filter(country == ""United States"")"
+"0",""
