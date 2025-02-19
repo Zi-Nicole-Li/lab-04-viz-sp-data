@@ -28,7 +28,8 @@ print(ncol(dennys))
 print(nrow(dennys))
 
 ```
-# answer for Ex 1:we have 6 columns and 1643 rows. Each row represents one Denny’s location. the variables include latitude, longitude, city, state, and address.
+
+answer for Ex 1:we have 6 columns and 1643 rows. Each row represents one Denny’s location. the variables include latitude, longitude, city, state, and address.
 
 ### Exercise 2
 
@@ -37,26 +38,31 @@ print(nrow(dennys))
 print(ncol(laquinta))
 print(nrow(laquinta))
 ```
-# answer for Ex 2:we have 6 columns and 909 rows. Each row represents one La Quinta’s location. the variables include latitude, longitude, city, state, and address.
+
+answer for Ex 2:we have 6 columns and 909 rows. Each row represents one La Quinta’s location. the variables include latitude, longitude, city, state, and address.
 
 ### Exercise 3
+
 ```{r Ex.3}
 # Take a look at the websites that the data come from.
-# answer for Ex.3: Are there any La Quinta’s locations outside of the US? based on the link, I think, no, there's no La Quinta outside the us. 
-# What about Denny’s? based on the link, I think there's no Denny's outside the US? but I Google it instead, and it shows there are some Denny's outside of the US, like Canada and Mexico. 
 ```
-...
+
+answer for Ex.3: Are there any La Quinta’s locations outside of the US? based on the link, I think, no, there's no La Quinta outside the us. 
+# What about Denny’s? based on the link, I think there's no Denny's outside the US? but I Google it instead, and it shows there are some Denny's outside of the US, like Canada and Mexico. 
+
 
 ### Exercise 4
+
 ```{r Ex.4}
 # Now take a look at the data. What would be some ways of determining whether or not either establishment has any locations outside the US using just the data (and not the websites).
-
-# we can use "filter" function, and I think it's a most straightforward way to use. 
-
 ```
-...
+
+we can use "filter" function, and I think it's a most straightforward way to use. 
+
+
 
 ### Exercise 5
+
 ```{r Ex.5}
 # filter the Denny’s locations for observations where state is not in states$abbreviation.
 
@@ -67,10 +73,12 @@ dennys %>%
 
 ```
 
-...
+
 
 ### Exercise 6
+
 ```{r Ex.6}
+
 # Add a country variable to the Denny’s dataset and set all observations equal to "United States". 
 dennys_us <- dennys %>%
   mutate(country = "United States")
@@ -79,9 +87,10 @@ print(nrow(dennys_us))
 
 ```
 
-...
+
 
 ### Exercise 7
+
 ```{r Ex.7}
 # Find the La Quinta locations that are outside the US, and figure out which country they are in.
 
@@ -98,6 +107,7 @@ print(laquinta_outside_us)
 
 
 ### Exercise 8
+
 ```{r Ex.8}
 # Add a country variable to the La Quinta dataset. Use the case_when function to populate this variable.
 
@@ -119,7 +129,9 @@ laquinta_us <- laquinta_country %>%
  filter(country == "United States")
 
 ```
+
 ### Exercise 9
+
 ```{r Ex.9}
 # Which states have the most and fewest Denny’s locations? What about La Quinta?
 
@@ -129,8 +141,10 @@ dennys %>%
 
 
 ```
+
 ### Exercise 10
-```{r-Ex.10}
+
+```{r Ex.10}
 # Which states have the most Denny’s locations per thousand square miles? What about La Quinta?
 
 dennys <- dennys %>%
@@ -149,7 +163,9 @@ ggplot(dennys_laquinta, mapping = aes(
 
 
 ```
+
 ### Exercise 11
+
 ```{r-Ex.11}
 # Filter the data for observations in North Carolina only, and recreate the plot. 
 
@@ -162,12 +178,15 @@ dennys_laquinta %>%
  )) +
    geom_point(size = 2, alpha = 0.6) + 
    labs(title = "Location of Dennys vs. Laquinta in NC")
-
-# the joke may not hold true here, I think? based on this plot, I can only see 4 locations that the two are super close to each other.
-
 ```
+
+The joke may not hold true here, I think? based on this plot, I can only see 4 locations that the two are super close to each other.
+
+
+
 ### Exercise 12
-```{r-EX.12}
+
+```{r EX.12}
 # Now filter the data for observations in Texas only, and recreate the plot.
 
 dennys_laquinta %>% 
@@ -180,7 +199,8 @@ dennys_laquinta %>%
    geom_point(size = 2.5, alpha = 0.25) + 
    labs(title = "Location of Dennys vs. Laquinta in TX")
 
-# the joke hold true in TX, they do cluster more tightly here. 
-
 ```
+
+the joke hold true in TX, they do cluster more tightly here. 
+
 
