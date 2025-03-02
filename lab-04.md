@@ -33,7 +33,9 @@ print(nrow(dennys))
 
     ## [1] 1643
 
-# answer for Ex 1:we have 6 columns and 1643 rows. Each row represents one Denny’s location. the variables include latitude, longitude, city, state, and address.
+answer for Ex 1:we have 6 columns and 1643 rows. Each row represents one
+Denny’s location. the variables include latitude, longitude, city,
+state, and address.
 
 ### Exercise 2
 
@@ -50,27 +52,30 @@ print(nrow(laquinta))
 
     ## [1] 909
 
-# answer for Ex 2:we have 6 columns and 909 rows. Each row represents one La Quinta’s location. the variables include latitude, longitude, city, state, and address.
+answer for Ex 2:we have 6 columns and 909 rows. Each row represents one
+La Quinta’s location. the variables include latitude, longitude, city,
+state, and address.
 
 ### Exercise 3
 
 ``` r
 # Take a look at the websites that the data come from.
-# answer for Ex.3: Are there any La Quinta’s locations outside of the US? based on the link, I think, no, there's no La Quinta outside the us. 
-# What about Denny’s? based on the link, I think there's no Denny's outside the US? but I Google it instead, and it shows there are some Denny's outside of the US, like Canada and Mexico. 
 ```
 
-…
+answer for Ex.3: Are there any La Quinta’s locations outside of the US?
+based on the link, I think, no, there’s no La Quinta outside the us. \#
+What about Denny’s? based on the link, I think there’s no Denny’s
+outside the US? but I Google it instead, and it shows there are some
+Denny’s outside of the US, like Canada and Mexico.
 
 ### Exercise 4
 
 ``` r
 # Now take a look at the data. What would be some ways of determining whether or not either establishment has any locations outside the US using just the data (and not the websites).
-
-# we can use "filter" function, and I think it's a most straightforward way to use. 
 ```
 
-…
+we can use “filter” function, and I think it’s a most straightforward
+way to use.
 
 ### Exercise 5
 
@@ -89,8 +94,6 @@ dennys %>%
 # there's no Denny's location outside the US, based on my data. 
 ```
 
-…
-
 ### Exercise 6
 
 ``` r
@@ -107,8 +110,6 @@ print(nrow(dennys_us))
 ```
 
     ## [1] 1643
-
-…
 
 ### Exercise 7
 
@@ -222,43 +223,56 @@ dennys %>%
 
 ### Exercise 10
 
-\`\`\`{r-Ex.10} \# Which states have the most Denny’s locations per
-thousand square miles? What about La Quinta?
+``` r
+# Which states have the most Denny’s locations per thousand square miles? What about La Quinta?
 
-dennys \<- dennys %\>% mutate(establishment = “Denny’s”) laquinta \<-
-laquinta %\>% mutate(establishment = “La Quinta”)
+dennys <- dennys %>%
+  mutate(establishment = "Denny's")
+laquinta <- laquinta %>%
+  mutate(establishment = "La Quinta")
 
-dennys_laquinta \<- bind_rows(dennys, laquinta)
+dennys_laquinta <- bind_rows(dennys, laquinta)
 
-ggplot(dennys_laquinta, mapping = aes( x = longitude, y = latitude,
-color = establishment )) + geom_point()
+ggplot(dennys_laquinta, mapping = aes(
+  x = longitude,
+  y = latitude,
+  color = establishment
+)) +
+  geom_point()
+```
 
-    ### Exercise 11
-    ```{r-Ex.11}
-    # Filter the data for observations in North Carolina only, and recreate the plot. 
+![](lab-04_files/figure-gfm/Ex.10-1.png)<!-- -->
+
+### Exercise 11
+
+\`\`\`{r-Ex.11} \# Filter the data for observations in North Carolina
+only, and recreate the plot.
+
+dennys_laquinta %\>% filter(state == “NC”) %\>% ggplot(mapping = aes( x
+= longitude, y = latitude, color = establishment )) + geom_point(size =
+2, alpha = 0.6) + labs(title = “Location of Dennys vs. Laquinta in NC”)
+
+
+    The joke may not hold true here, I think? based on this plot, I can only see 4 locations that the two are super close to each other.
+
+
+
+    ### Exercise 12
+
+
+    ``` r
+    # Now filter the data for observations in Texas only, and recreate the plot.
 
     dennys_laquinta %>% 
-       filter(state == "NC") %>%
+       filter(state == "TX") %>%
        ggplot(mapping = aes(
        x = longitude,
        y = latitude,
        color = establishment
      )) +
-       geom_point(size = 2, alpha = 0.6) + 
-       labs(title = "Location of Dennys vs. Laquinta in NC")
+       geom_point(size = 2.5, alpha = 0.25) + 
+       labs(title = "Location of Dennys vs. Laquinta in TX")
 
-    # the joke may not hold true here, I think? based on this plot, I can only see 4 locations that the two are super close to each other.
+![](lab-04_files/figure-gfm/EX.12-1.png)<!-- -->
 
-### Exercise 12
-
-\`\`\`{r-EX.12} \# Now filter the data for observations in Texas only,
-and recreate the plot.
-
-dennys_laquinta %\>% filter(state == “TX”) %\>% ggplot(mapping = aes( x
-= longitude, y = latitude, color = establishment )) + geom_point(size =
-2.5, alpha = 0.25) + labs(title = “Location of Dennys vs. Laquinta in
-TX”)
-
-# the joke hold true in TX, they do cluster more tightly here.
-
-\`\`\`
+the joke hold true in TX, they do cluster more tightly here.
